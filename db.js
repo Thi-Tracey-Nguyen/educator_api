@@ -13,12 +13,18 @@ async function dbClose() {
         console.log('Mongoose disconnected')
     }
 
-
 const educatorSchema = new mongoose.Schema({
-    name: { type: String, required: true }, 
-    skills: { type: [String], required: true }
+    name: { type: String, required: true },
+    skills: { type: [String], required: true }, 
+    location: { type: mongoose.ObjectId, ref: 'Location' }
 })
 
 const EducatorModel = mongoose.model('Educator', educatorSchema)
 
-export { educatorSchema, EducatorModel, dbClose }
+const locationSchema = new mongoose.Schema({
+    name: { type: String, required: true }
+})
+
+const LocationModel = mongoose.model('Location', locationSchema)
+
+export { educatorSchema, EducatorModel, locationSchema, LocationModel, dbClose }
