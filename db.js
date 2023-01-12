@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 try {
-    const m = await mongoose.connect('mongodb+srv://thinguyen:thinguyen@cluster0.ijsnswl.mongodb.net/coder_academy?retryWrites=true&w=majority')
-    console.log('Mongoose conneted')
+    const m = await mongoose.connect(process.env.ATLAS_DB_URL)
 } 
 catch (err) {
     console.log(err.message)
